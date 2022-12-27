@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": "io.github.michaelbui99.manhwanexus.server.RunServer"
+        )
+    }
+}
+
+group 'io.github.michaelbui99'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+    // Web Framework
+    implementation("io.javalin:javalin:5.2.0")
+
+    // Submodules
+    implementation project(":manhwa-nexus-core")
+    implementation project(":manhwa-nexus-data-access")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+shadowJar {
+    archiveBaseName.set("manhwa-nexus-server")
+}

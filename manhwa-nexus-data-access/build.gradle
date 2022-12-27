@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.michaelbui99'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+
+    // Submodules
+    implementation project(":manhwa-nexus-core")
+
+    // JDBC
+    implementation 'org.postgresql:postgresql:42.5.1'
+
+    // jooq
+    implementation 'org.jooq:jooq:3.17.6'
+    implementation 'org.jooq:jooq-meta:3.17.6'
+    implementation 'org.jooq:jooq-codegen:3.17.6'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task codegen(dependsOn: ":manhwa-nexus-data-access:build", type: JavaExec) {
+    group = "codegen"
+
+    classpath sourceSets.main.runtimeClasspath
+    mainClass = "io.github.michaelbui99.manhwanexus.dataaccess.RunJooqCodeGeneration"
+}

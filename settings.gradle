@@ -1,0 +1,5 @@
+rootProject.name = 'manhwa-nexus'
+include 'manhwa-nexus-core'
+include 'manhwa-nexus-server'
+include 'manhwa-nexus-data-access'
+
