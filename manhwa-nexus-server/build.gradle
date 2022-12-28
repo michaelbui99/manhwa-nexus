@@ -28,6 +28,15 @@ dependencies {
     // Submodules
     implementation project(":manhwa-nexus-core")
     implementation project(":manhwa-nexus-data-access")
+
+    // Spring DI
+    implementation 'org.springframework:spring-context:6.0.3'
+
+    // slf4j Logger
+    implementation("org.slf4j:slf4j-simple:2.0.3")
+
+    // JSON object mapper
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0")
 }
 
 test {

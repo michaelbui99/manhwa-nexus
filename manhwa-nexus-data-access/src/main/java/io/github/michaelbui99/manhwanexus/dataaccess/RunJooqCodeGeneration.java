@@ -1,10 +1,7 @@
-package io.github.michaelbui.manhwanexus.dataaccess;
+package io.github.michaelbui99.manhwanexus.dataaccess;
 
 import io.github.michaelbui99.manhwanexus.core.util.ResourcesHandler;
 import org.jooq.codegen.GenerationTool;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 public class RunJooqCodeGeneration {
     public static void main(String[] args) throws Exception {

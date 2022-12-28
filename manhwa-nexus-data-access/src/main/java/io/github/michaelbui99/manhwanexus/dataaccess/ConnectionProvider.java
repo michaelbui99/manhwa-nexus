@@ -1,4 +1,4 @@
-package io.github.michaelbui.manhwanexus.dataaccess;
+package io.github.michaelbui99.manhwanexus.dataaccess;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,8 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionProvider {
     private String user = System.getenv("DB_USER");
-    private String password = System.getenv("PASSWORD");
-    private String url = String.format("jdbc:postgres://%s:%s/%s", System.getenv("DB_HOST"), System.getenv("DB_PORT")
+    private String password = System.getenv("DB_PASSWORD");
+    private String url = String.format("jdbc:postgresql://%s:%s/%s", System.getenv("DB_HOST"), System.getenv("DB_PORT")
             , System.getenv("DB_DB"));
     private Connection connection;
     private boolean connected = false;
