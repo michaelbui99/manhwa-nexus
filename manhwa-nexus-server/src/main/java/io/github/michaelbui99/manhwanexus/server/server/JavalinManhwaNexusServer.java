@@ -14,7 +14,12 @@ public class JavalinManhwaNexusServer implements ManhwaNexusServer {
 
     @Override
     public void start() {
-        System.out.println("Starting server...");
+        System.out.println("Starting server on port: " + port + " ...");
         app.start(port);
+    }
+
+    @Override
+    public void get(String path, Handler handler) {
+        this.app.get(path, handler::execute);
     }
 }

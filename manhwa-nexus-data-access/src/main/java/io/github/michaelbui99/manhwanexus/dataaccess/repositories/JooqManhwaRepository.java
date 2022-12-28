@@ -1,11 +1,11 @@
-package io.github.michaelbui.manhwanexus.dataaccess;
+package io.github.michaelbui99.manhwanexus.dataaccess.repositories;
 
 import io.github.michaelbui99.manhwanexus.core.interfaces.repository.ManhwaRepository;
 import io.github.michaelbui99.manhwanexus.core.models.Manhwa;
 
 import java.util.List;
 
-public class SqlManhwaRepository implements ManhwaRepository {
+public class JooqManhwaRepository implements ManhwaRepository {
 
     @Override
     public Manhwa create(Manhwa entity) {

@@ -22,7 +22,7 @@ public class JavalinManhwaNexusServerFactory implements ManhwaNexusServerFactory
 
     @Override
     public ManhwaNexusServer create() {
-        Properties serverConfig = configHandler.getServerConfiguration();
+        Properties serverConfig = configHandler.readPropertyResource("server.properties");
 
         int port = ServerConstants.DEFAULT_PORT;
         if (serverConfig != null && serverConfig.containsKey("SERVER_PORT")) {

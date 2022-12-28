@@ -22,7 +22,7 @@ test {
 }
 
 evaluationDependsOn(":manhwa-nexus-server")
-task distribute(dependsOn: ":manhwa-nexus-server:shadowJar", type: Copy) {
+task distribute(dependsOn: [":manhwa-nexus-data-access:codegen", ":manhwa-nexus-server:shadowJar"], type: Copy) {
     from "manhwa-nexus-server/build/libs"
     into "build/distributions"
     include "*-all.jar"
