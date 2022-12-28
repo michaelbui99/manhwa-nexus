@@ -11,8 +11,8 @@ import org.springframework.context.annotation.Configuration;
 public class DependencyInjectionConfig {
     @Bean
     public GenreService genreService() {
-        var genreRespoitoryFactory = new JooqGenreRepositoryFactory();
-        var genreServiceFactory = new GenreServiceFactoryImpl(genreRespoitoryFactory);
+        var genreRespositoryFactory = new JooqGenreRepositoryFactory();
+        var genreServiceFactory = new GenreServiceFactoryImpl(genreRespositoryFactory);
 
         return genreServiceFactory.create();
     }
