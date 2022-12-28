@@ -46,7 +46,7 @@ To generate the classes run:
 $ ./gradlew manhwa-nexus-data-access:codegen
 ```
 
-This is only be required before development. When building the server jar, the <code>codegen</code> task is executed
+This is only required before development. When building the server jar, the <code>codegen</code> task is executed
 during the <code>distribute</code> task
 
 ## Analysis
