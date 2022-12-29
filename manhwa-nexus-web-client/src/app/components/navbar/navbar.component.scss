@@ -32,7 +32,7 @@
 
     .actions {
       button{
-        border-radius: 20px;
+        @include button-base;
       }
       button:not(:last-of-type) {
         margin-right: 1rem;
