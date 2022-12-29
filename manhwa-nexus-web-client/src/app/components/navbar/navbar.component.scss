@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 2rem $pagePadding;
     background-color: $bgColor;
 
@@ -30,6 +31,9 @@
     }
 
     .actions {
+      button{
+        border-radius: 20px;
+      }
       button:not(:last-of-type) {
         margin-right: 1rem;
       }

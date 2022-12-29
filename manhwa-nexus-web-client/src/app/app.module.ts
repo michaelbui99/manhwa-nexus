@@ -8,13 +8,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { IndexComponent } from './pages/index/index.component';
 import {MatButtonModule} from "@angular/material/button";
 import { NavLinkComponent } from './components/nav-link/nav-link.component';
+import { BrowseComponent } from './pages/browse/browse.component';
+import { NewsComponent } from './pages/news/news.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     IndexComponent,
-    NavLinkComponent
+    NavLinkComponent,
+    BrowseComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

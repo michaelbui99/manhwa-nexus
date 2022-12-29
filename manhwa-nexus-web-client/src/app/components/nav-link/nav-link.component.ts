@@ -17,6 +17,7 @@ export class NavLinkComponent implements OnInit {
   }
 
   async onClick() {
+    console.log(this._router);
     await this._router.navigateByUrl(this.navLink.navigatePath);
   }
 }

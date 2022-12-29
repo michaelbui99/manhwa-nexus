@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavLink} from "../nav-link/nav-link.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ export class NavbarComponent implements OnInit {
     {displayText: "News", navigatePath: "/news", selected: false},
   ]
 
-  constructor() {
+  constructor(private _router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,6 +23,11 @@ export class NavbarComponent implements OnInit {
     navLink.selected = true;
     this.navLinks.forEach(navLink => navLink.selected = false);
     navLink.selected = true;
+  }
+
+  async navigateToIndex() {
+    this.navLinks.forEach(navLink => navLink.selected = false);
+    await this._router.navigateByUrl("");
   }
 }
 
