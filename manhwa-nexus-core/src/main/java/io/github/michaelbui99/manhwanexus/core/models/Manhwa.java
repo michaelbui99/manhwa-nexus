@@ -111,6 +111,34 @@ public class Manhwa {
     public Manhwa() {
     }
 
+    // TODO: Replace with builder
+    public Manhwa(int id, String title, Map<TitleLanguage, String> alternateTitles, String synopsis, int chapterCount
+            , int volumeCount, int seasonCount, LocalDate startDate, LocalDate endDate, boolean isAdult,
+                  List<String> genres, List<String> tags, List<Character> characters, Source sourceMaterial,
+                  Map<String, String> manhwaSpecificAttributes, CountryCode countryOfOrigin, List<Staff> staffList,
+                  Studio studio, Publisher publisher, List<Manhwa> relatedManhwa) {
+        this.id = id;
+        this.title = title;
+        this.alternateTitles = alternateTitles;
+        this.synopsis = synopsis;
+        this.chapterCount = chapterCount;
+        this.volumeCount = volumeCount;
+        this.seasonCount = seasonCount;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.isAdult = isAdult;
+        this.genres = genres;
+        this.tags = tags;
+        this.characters = characters;
+        this.sourceMaterial = sourceMaterial;
+        this.manhwaSpecificAttributes = manhwaSpecificAttributes;
+        this.countryOfOrigin = countryOfOrigin;
+        this.staffList = staffList;
+        this.studio = studio;
+        this.publisher = publisher;
+        this.relatedManhwa = relatedManhwa;
+    }
+
     public int getSeasonYear() {
         return startDate.getYear();
     }

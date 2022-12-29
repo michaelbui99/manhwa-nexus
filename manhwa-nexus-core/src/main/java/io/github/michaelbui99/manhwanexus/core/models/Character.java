@@ -3,6 +3,7 @@ package io.github.michaelbui99.manhwanexus.core.models;
 import java.util.List;
 
 public class Character {
+    private int id;
     private String name;
     private int age;
     private List<String> titles;
@@ -12,8 +13,9 @@ public class Character {
     private CharacterStatus status;
     private String description;
 
-    public Character(String name, int age, List<String> titles, String race, List<Character> relatives,
+    public Character(int id, String name, int age, List<String> titles, String race, List<Character> relatives,
                      String occupation, CharacterStatus status, String description) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.titles = titles;
@@ -22,5 +24,41 @@ public class Character {
         this.occupation = occupation;
         this.status = status;
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public List<String> getTitles() {
+        return titles;
+    }
+
+    public String getRace() {
+        return race;
+    }
+
+    public List<Character> getRelatives() {
+        return relatives;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public CharacterStatus getStatus() {
+        return status;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

@@ -4,6 +4,6 @@ import java.util.List;
 
 public class Studio {
     private String name;
-    private List<Manhwa> publishedWorks;
+    private List<Manhwa> listOfWork;
     private String officialWebsiteURL;
 }
