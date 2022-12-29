@@ -1,0 +1,9 @@
+@import "common";
+
+@mixin page-base {
+  padding: 0 $pagePadding;
+}
+
+@mixin button-base{
+  border-radius: 20px;
+}

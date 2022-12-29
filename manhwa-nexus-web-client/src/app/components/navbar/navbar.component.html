@@ -1,0 +1,16 @@
+<div class="navbar-container">
+  <div class="title" (click)="navigateToIndex()">
+    <span>Manhwa Nexus</span>
+  </div>
+
+  <div class="navigation">
+    <div *ngFor="let navLink of navLinks">
+      <app-nav-link [navLink]="navLink" (click)="handleNavLinkClick(navLink)"></app-nav-link>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button mat-button>Sign up</button>
+    <button mat-raised-button color="primary">Login</button>
+  </div>
+</div>

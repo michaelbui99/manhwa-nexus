@@ -1,0 +1,14 @@
+:host {
+  .nav-link-container {
+    cursor: pointer;
+
+    p {
+      font-size: 16px;
+      transition: opacity 0.3s ease-in-out;
+
+      &:hover{
+        opacity: 0.5;
+      }
+    }
+  }
+}

@@ -2,6 +2,8 @@
 
 The goal of Manhwa Nexus is to provide users a central portal for all things related to Manhwa.
 
+<img src="doc/img/web-client-index.png">
+
 ## Development Environment
 
 ### Requirements
