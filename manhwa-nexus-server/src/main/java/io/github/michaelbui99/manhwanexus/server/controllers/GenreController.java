@@ -1,22 +1,24 @@
 package io.github.michaelbui99.manhwanexus.server.controllers;
 
-import io.github.michaelbui99.manhwanexus.core.GenreServiceFactoryImpl;
-import io.github.michaelbui99.manhwanexus.core.interfaces.GenreServiceFactory;
 import io.github.michaelbui99.manhwanexus.core.interfaces.service.GenreService;
-import io.github.michaelbui99.manhwanexus.dataaccess.repositories.JooqGenreRepositoryFactory;
-import io.javalin.Javalin;
-import io.javalin.http.Context;
+import io.github.michaelbui99.manhwanexus.server.server.ManhwaNexusServer;
 
 import java.util.List;
 
-public class GenreController {
+public class GenreController extends ControllerBase {
     private final GenreService genreService;
 
     public GenreController(GenreService genreService) {
+        super();
         this.genreService = genreService;
     }
 
-    public List<String> getAll(){
+    public List<String> getAll() {
         return genreService.getAll();
+    }
+
+    @Override
+    public void applyRoutes(ManhwaNexusServer server) {
+        server.get(API_PREFIX + "genres", context -> context.json(getAll()));
     }
 }

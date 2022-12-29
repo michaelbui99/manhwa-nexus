@@ -10,17 +10,8 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class RunServer {
     public static void main(String[] args) {
-        ResourcesHandler handler = new ResourcesHandler();
         ApplicationContext appContext = new AnnotationConfigApplicationContext(DependencyInjectionConfig.class);
-
-        ManhwaNexusServerFactory factory = new JavalinManhwaNexusServerFactory(handler);
-        ManhwaNexusServer server = factory.create();
-        String apiPrefix = "api/v1/";
-
-        GenreController genreController = appContext.getBean(GenreController.class);
-
-        server.get(apiPrefix + "genres", context -> context.json(genreController.getAll()));
-
+        ManhwaNexusServer server = appContext.getBean(ManhwaNexusServer.class);
         server.start();
     }
 }
