@@ -4,6 +4,8 @@
 :host {
   .page-container {
     @include page-base;
+    display: flex;
+    flex-direction: row;
 
     .hero {
       max-width: 50vw;
@@ -38,6 +40,13 @@
         button {
           @include button-base;
         }
+      }
+    }
+
+    .splash-image{
+      img{
+        position: absolute;
+        right:0;
       }
     }
   }
