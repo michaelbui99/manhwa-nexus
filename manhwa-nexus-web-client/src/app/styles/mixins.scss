@@ -1,0 +1,5 @@
+@import "common";
+
+@mixin page-base {
+  padding: 0 $pagePadding;
+}
