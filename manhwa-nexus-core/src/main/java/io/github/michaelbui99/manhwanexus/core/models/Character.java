@@ -5,6 +5,7 @@ import java.util.List;
 public class Character {
     private int id;
     private String name;
+    // TODO: Take a look at this again, since character can age as the series progress.
     private int age;
     private List<String> titles;
     private String race;

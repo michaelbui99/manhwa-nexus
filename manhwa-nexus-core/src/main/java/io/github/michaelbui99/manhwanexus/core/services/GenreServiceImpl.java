@@ -21,4 +21,9 @@ public class GenreServiceImpl implements GenreService {
     public String create(String genre) {
         return genreRepository.create(genre);
     }
+
+    @Override
+    public String tryResolveGenre(String genre) {
+        return null;
+    }
 }

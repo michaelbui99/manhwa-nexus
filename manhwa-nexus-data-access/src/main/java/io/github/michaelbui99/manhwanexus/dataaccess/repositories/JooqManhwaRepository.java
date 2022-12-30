@@ -5,10 +5,16 @@ import io.github.michaelbui99.manhwanexus.core.models.Manhwa;
 
 import java.util.List;
 
-public class JooqManhwaRepository implements ManhwaRepository {
+public class JooqManhwaRepository extends BaseJooqRepository implements ManhwaRepository {
+
+    public JooqManhwaRepository() {
+        super();
+    }
 
     @Override
     public Manhwa create(Manhwa entity) {
+        var create = getDSLContext();
+        create.insertInto(io.github.michaelbui99.manhwanexus.dataaccess.codegen.tables.Manhwa.MANHWA);
         return null;
     }
 
