@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("genres")
 public class GenreController {
-    private final Logger LOGGER = LoggerFactory.getLogger(GenreController.class);
+    private final Logger logger = LoggerFactory.getLogger(GenreController.class);
     private final GenreRepository genreRepository;
 
     @Autowired
@@ -26,9 +25,10 @@ public class GenreController {
     @GetMapping
     public ResponseEntity<List<String>> getAll() {
         try {
+            logger.info("Retrieved GET request for /genres");
             return ResponseEntity.ok(genreRepository.getAll());
         } catch (Exception e) {
-            LOGGER.error("Failed to retrieve genres: " + e.getMessage());
+            logger.error(String.format("failed to retrieve all genres: %s", e.getMessage()));
             e.printStackTrace();
             return ResponseEntity.internalServerError().build();
         }

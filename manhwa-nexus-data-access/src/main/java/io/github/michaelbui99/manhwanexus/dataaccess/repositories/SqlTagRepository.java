@@ -1,6 +1,6 @@
 package io.github.michaelbui99.manhwanexus.dataaccess.repositories;
 
-import io.github.michaelbui99.manhwanexus.core.interfaces.repository.GenreRepository;
+import io.github.michaelbui99.manhwanexus.core.interfaces.repository.TagRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,21 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class SqlGenreRepository extends BaseSqlRepository implements GenreRepository {
-
+public class SqlTagRepository  extends BaseSqlRepository implements TagRepository {
     @Override
     public String create(String entity) {
-        AtomicReference<String> createdGenre = new AtomicReference<>();
+        AtomicReference<String> createdTag = new AtomicReference<>();
 
         perform(connection -> {
             try {
-                PreparedStatement stm = connection.prepareStatement("INSERT INTO genre(genre) VALUES ?", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement stm = connection.prepareStatement("INSERT INTO tag(tag) VALUES ?", Statement.RETURN_GENERATED_KEYS);
                 stm.setString(1, entity);
                 ResultSet generatedKeys = stm.getGeneratedKeys();
 
                 if (generatedKeys.next()) {
                     connection.commit();
-                    createdGenre.set(entity);
+                    createdTag.set(entity);
                 }
 
             } catch (SQLException e) {
@@ -32,7 +31,7 @@ public class SqlGenreRepository extends BaseSqlRepository implements GenreReposi
             }
         });
 
-        return createdGenre.get();
+        return createdTag.get();
     }
 
     @Override
@@ -52,21 +51,21 @@ public class SqlGenreRepository extends BaseSqlRepository implements GenreReposi
 
     @Override
     public List<String> getAll() {
-        List<String> genres = new ArrayList<>();
+        List<String> tags = new ArrayList<>();
 
         perform((connection) -> {
             try {
-                PreparedStatement stm = connection.prepareStatement("SELECT genre from genre");
+                PreparedStatement stm = connection.prepareStatement("SELECT tag from tag");
                 ResultSet result = stm.executeQuery();
 
                 while (result.next()) {
-                    genres.add(result.getString("genre"));
+                    tags.add(result.getString("tag"));
                 }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         });
 
-        return genres;
+        return tags;
     }
 }
