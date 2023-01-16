@@ -1,48 +1,49 @@
 plugins {
     id 'java'
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id 'org.springframework.boot' version '3.0.1'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
-jar {
-    manifest {
-        attributes(
-                "Main-Class": "io.github.michaelbui99.manhwanexus.server.RunServer"
-        )
-    }
-}
-
-group 'io.github.michaelbui99'
-version '1.0-SNAPSHOT'
+group = 'io.github.michaelbui99'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
+    maven { url 'https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates' }
+}
+
+ext {
+    set('springCloudVersion', "2022.0.0")
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-
-    // Web Framework
-    implementation("io.javalin:javalin:5.2.0")
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 
     // Submodules
-    implementation project(":manhwa-nexus-core")
-    implementation project(":manhwa-nexus-data-access")
-
-    // Spring DI
-    implementation 'org.springframework:spring-context:6.0.3'
-
-    // slf4j Logger
-    implementation("org.slf4j:slf4j-simple:2.0.3")
-
-    // JSON object mapper
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0")
+    implementation project(path: ':manhwa-nexus-core')
+    implementation project(path: ':manhwa-nexus-data-access')
 }
 
-test {
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
     useJUnitPlatform()
 }
 
-shadowJar {
-    archiveBaseName.set("manhwa-nexus-server")
-}
+//task wrapper(type: Wrapper){
+//    gradleVersion = '7.2'
+//}
+//
+//task prepareKotlinBuildScriptModel {
+//
+//}

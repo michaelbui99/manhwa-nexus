@@ -1,29 +1,53 @@
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '3.0.1'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
+springBoot{
+    setMainClass('io.github.micahelbui99.manhwanexus.server.ManhwaNexusServerApplication')
+}
 
 group 'io.github.michaelbui99'
 version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven { url 'https://artifactory-oss.prod.netflix.net/artifactory/maven-oss-candidates' }
+}
+
+ext {
+    set('springCloudVersion', "2022.0.0")
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     implementation project(":manhwa-nexus-server")
     implementation project(":manhwa-nexus-core")
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
 test {
     useJUnitPlatform()
 }
 
+
 evaluationDependsOn(":manhwa-nexus-server")
-task distribute(dependsOn: [":manhwa-nexus-data-access:codegen", ":manhwa-nexus-server:shadowJar"], type: Copy) {
+task distribute(dependsOn: ["manhwa-nexus-server:bootJar"], type:Copy){
     from "manhwa-nexus-server/build/libs"
     into "build/distributions"
-    include "*-all.jar"
 }
+
+build.dependsOn distribute
