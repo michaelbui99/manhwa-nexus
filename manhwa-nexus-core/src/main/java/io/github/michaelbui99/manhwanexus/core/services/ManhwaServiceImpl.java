@@ -58,10 +58,12 @@ public class ManhwaServiceImpl implements ManhwaService {
 
         Optional<Studio> studio = getStudio(manhwa);
 
+        publisher.ifPresent(manhwa::setPublisher);
+        studio.ifPresent(manhwa::setStudio);
+
         var createdManhwa = manhwaRepository.create(manhwa);
 
         publisher.ifPresent(p -> publisherService.addPublishedWork(p.getId(), createdManhwa));
-
         studio.ifPresent(s -> studioService.addListedWork(s.getId(), createdManhwa));
 
         return createdManhwa;
@@ -79,25 +81,27 @@ public class ManhwaServiceImpl implements ManhwaService {
 
     private Optional<Studio> getStudio(Manhwa manhwa) {
         Studio studio;
-        if (manhwa.getStudio() == null) {
+        if (manhwa.getStudio().isEmpty()) {
             return Optional.empty();
-        } else if (!studioService.exists(manhwa.getStudio().getName()) || !studioService.exists(manhwa.getStudio().getId())) {
-            studio = studioService.create(manhwa.getStudio());
+        } else if (!studioService.exists(manhwa.getStudio().get().getName()) || !studioService.exists(manhwa.getStudio().get().getId())) {
+            studio = studioService.create(manhwa.getStudio().get());
         } else {
-            studio = studioService.getById(manhwa.getStudio().getId());
+            studio = studioService.getById(manhwa.getStudio().get().getId());
         }
         return Optional.of(studio);
     }
 
     private Optional<Publisher> getPublisher(Manhwa manhwa) {
         Publisher publisher;
-        if (manhwa.getPublisher() == null) {
+
+        if (manhwa.getPublisher().isEmpty()) {
             return Optional.empty();
-        } else if (!publisherService.exists(manhwa.getPublisher().getName()) || !publisherService.exists(manhwa.getPublisher().getId())) {
-            publisher = publisherService.create(manhwa.getPublisher());
+        } else if (!publisherService.exists(manhwa.getPublisher().get().getName()) || !publisherService.exists(manhwa.getPublisher().get().getId())) {
+            publisher = publisherService.create(manhwa.getPublisher().get());
         } else {
-            publisher = publisherService.getById(manhwa.getPublisher().getId());
+            publisher = publisherService.getById(manhwa.getPublisher().get().getId());
         }
+
         return Optional.of(publisher);
     }
 }
