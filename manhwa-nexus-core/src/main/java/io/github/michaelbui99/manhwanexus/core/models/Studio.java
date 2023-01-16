@@ -1,6 +1,7 @@
 package io.github.michaelbui99.manhwanexus.core.models;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Studio {
     private int id;
@@ -27,7 +28,10 @@ public class Studio {
         return listOfWork;
     }
 
-    public String getOfficialWebsiteURL() {
-        return officialWebsiteURL;
+    public Optional<String> getOfficialWebsiteURL() {
+        if (officialWebsiteURL == null || officialWebsiteURL.isEmpty() || officialWebsiteURL.isBlank()) {
+            return Optional.empty();
+        }
+        return Optional.of(officialWebsiteURL);
     }
 }
