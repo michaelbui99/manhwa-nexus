@@ -2,10 +2,12 @@ package io.github.michaelbui99.manhwanexus.core.services;
 
 import io.github.michaelbui99.manhwanexus.core.interfaces.repository.ManhwaRepository;
 import io.github.michaelbui99.manhwanexus.core.interfaces.service.*;
+import io.github.michaelbui99.manhwanexus.core.models.Character;
 import io.github.michaelbui99.manhwanexus.core.models.Manhwa;
 import io.github.michaelbui99.manhwanexus.core.models.Publisher;
 import io.github.michaelbui99.manhwanexus.core.models.Studio;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,12 +54,19 @@ public class ManhwaServiceImpl implements ManhwaService {
 
         // NOTE : (mibui 30-12-2022) In the future when related works is implemented, this might have to be refactored.
         //         Related works indicates that the Manhwa is part of a series, i.e. Characters might already exist
-        manhwa.getCharacters().forEach(characterService::create);
+        // Ensures that the characters have an id before creating the Manhwa
+        List<Character> characters = new ArrayList<>();
+        manhwa.getCharacters().forEach(c -> {
+            Character createdCharacter = characterService.create(c);
+            characters.add(createdCharacter);
+        });
+        manhwa.setCharacters(characters);
 
         Optional<Publisher> publisher = getPublisher(manhwa);
 
         Optional<Studio> studio = getStudio(manhwa);
 
+        // Ensures that the studio and publisher have an id before creating the Manhwa
         publisher.ifPresent(manhwa::setPublisher);
         studio.ifPresent(manhwa::setStudio);
 
