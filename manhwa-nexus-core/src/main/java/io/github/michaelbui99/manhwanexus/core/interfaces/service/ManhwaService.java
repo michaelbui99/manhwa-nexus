@@ -3,6 +3,7 @@ package io.github.michaelbui99.manhwanexus.core.interfaces.service;
 import io.github.michaelbui99.manhwanexus.core.models.Manhwa;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ManhwaService {
     /**
@@ -12,7 +13,7 @@ public interface ManhwaService {
      * @throws io.github.michaelbui99.manhwanexus.core.exceptions.ManhwaNotFoundException if no Manhwa with the
      *                                                                                    provided id exists
      **/
-    Manhwa getById(int id);
+    Optional<Manhwa> getById(int id);
 
     /**
      * Returns all Manhwas stored in the system

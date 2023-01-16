@@ -1,11 +1,13 @@
 package io.github.michaelbui99.manhwanexus.core.interfaces.service;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GenreService {
     List<String> getAll();
 
     String create(String genre);
+    Optional<String> createIfNotExists(String genre);
 
     /**
      * Since Manhwa Nexus will get information from various sources, some resolution strategy is needed to resolve
