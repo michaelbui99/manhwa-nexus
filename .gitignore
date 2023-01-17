@@ -104,7 +104,4 @@ replay_pid*
 
 # Drawio backup files
 *.drawio.bkp
-
-# jooq code-generator
-/manhwa-nexus-data-access/src/main/resources/jooq-config.xml
-/manhwa-nexus-data-access/src/main/java/io/github/michaelbui99/manhwanexus/dataaccess/codegen
+*.drawio.dtmp

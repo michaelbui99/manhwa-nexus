@@ -8,9 +8,9 @@ The goal of Manhwa Nexus is to provide users a central portal for all things rel
 
 ### Requirements
 
-- Java 17
-- Node 16+
-- NPM 8+
+-   Java 17
+-   Node 16+
+-   NPM 8+
 
 ### Build server jar
 
@@ -24,8 +24,8 @@ The server jar will be located in the <PROJECT_ROOT>/build/distributions folder
 
 ### Run server
 
-- Build server jar
-- Run:
+-   Build server jar
+-   Run:
 
 ```console
 $ java -jar ./build/distributions/manhwa-nexus-server-<VERSION>-SNAPSHOT.jar
@@ -43,3 +43,7 @@ should have.
 ### Domain entities
 
 <img src="doc/diagrams/domain-entities.png">
+
+### News updates concept
+
+<img src="doc/diagrams/news-updates-concept.png">
