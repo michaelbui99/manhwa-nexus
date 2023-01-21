@@ -3,13 +3,13 @@ package io.github.michaelbui99.manhwanexus.core.models;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Manhwa {
     /**
      * Internal id
      */
     private int id;
-
     /**
      * Title of the Manhwa, e.g. Solo Leveling
      */
@@ -76,14 +76,6 @@ public class Manhwa {
     private Source sourceMaterial;
 
     /**
-     * Manhwa-specific attributes.
-     * Key = Attribute name
-     * Value = Content
-     * e.g. "Weapon(s)" : "BF Sword"
-     */
-    private Map<String, String> manhwaSpecificAttributes;
-
-    /**
      * Country code for where the Manhwa was created, e.g. KR
      */
     private CountryCode countryOfOrigin;
@@ -111,12 +103,11 @@ public class Manhwa {
     public Manhwa() {
     }
 
-    // TODO: Replace with builder
-    public Manhwa(int id, String title, Map<TitleLanguage, String> alternateTitles, String synopsis, int chapterCount
+    private Manhwa(int id, String title, Map<TitleLanguage, String> alternateTitles, String synopsis, int chapterCount
             , int volumeCount, int seasonCount, LocalDate startDate, LocalDate endDate, boolean isAdult,
-                  List<String> genres, List<String> tags, List<Character> characters, Source sourceMaterial,
-                  Map<String, String> manhwaSpecificAttributes, CountryCode countryOfOrigin, List<Staff> staffList,
-                  Studio studio, Publisher publisher, List<Manhwa> relatedManhwa) {
+                   List<String> genres, List<String> tags, List<Character> characters, Source sourceMaterial,
+                   CountryCode countryOfOrigin, List<Staff> staffList,
+                   Studio studio, Publisher publisher, List<Manhwa> relatedManhwa) {
         this.id = id;
         this.title = title;
         this.alternateTitles = alternateTitles;
@@ -131,12 +122,37 @@ public class Manhwa {
         this.tags = tags;
         this.characters = characters;
         this.sourceMaterial = sourceMaterial;
-        this.manhwaSpecificAttributes = manhwaSpecificAttributes;
         this.countryOfOrigin = countryOfOrigin;
         this.staffList = staffList;
         this.studio = studio;
         this.publisher = publisher;
         this.relatedManhwa = relatedManhwa;
+    }
+
+    public Manhwa(ManhwaBuilder builder) {
+        this.id = builder.getId();
+        this.title = builder.getTitle();
+        this.alternateTitles = builder.getAlternateTitles();
+        this.synopsis = builder.getSynopsis();
+        this.chapterCount = builder.getChapterCount();
+        this.volumeCount = builder.getVolumeCount();
+        this.seasonCount = builder.getSeasonCount();
+        this.startDate = builder.getStartDate();
+        this.endDate = builder.getEndDate();
+        this.isAdult = builder.isAdult();
+        this.genres = builder.getGenres();
+        this.tags = builder.getTags();
+        this.characters = builder.getCharacters();
+        this.sourceMaterial = builder.getSourceMaterial();
+        this.countryOfOrigin = builder.getCountryOfOrigin();
+        this.staffList = builder.getStaffList();
+        this.studio = builder.getStudio();
+        this.publisher = builder.getPublisher();
+        this.relatedManhwa = builder.getRelatedManhwa();
+    }
+
+    public static ManhwaBuilder create(int id, String title, List<String> genres, Source sourceMaterial, CountryCode countryOfOrigin) {
+        return new ManhwaBuilder(id, title, genres, sourceMaterial, countryOfOrigin);
     }
 
     public int getSeasonYear() {
@@ -203,10 +219,6 @@ public class Manhwa {
         return sourceMaterial;
     }
 
-    public Map<String, String> getManhwaSpecificAttributes() {
-        return manhwaSpecificAttributes;
-    }
-
     public CountryCode getCountryOfOrigin() {
         return countryOfOrigin;
     }
@@ -215,15 +227,99 @@ public class Manhwa {
         return staffList;
     }
 
-    public Studio getStudio() {
-        return studio;
+    public Optional<Studio> getStudio() {
+        if (studio == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of(studio);
     }
 
-    public Publisher getPublisher() {
-        return publisher;
+    public Optional<Publisher> getPublisher() {
+        if (publisher == null) {
+            return Optional.empty();
+        }
+        return Optional.of(publisher);
     }
 
     public List<Manhwa> getRelatedManhwa() {
         return relatedManhwa;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAlternateTitles(Map<TitleLanguage, String> alternateTitles) {
+        this.alternateTitles = alternateTitles;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis;
+    }
+
+    public void setChapterCount(int chapterCount) {
+        this.chapterCount = chapterCount;
+    }
+
+    public void setVolumeCount(int volumeCount) {
+        this.volumeCount = volumeCount;
+    }
+
+    public void setSeasonCount(int seasonCount) {
+        this.seasonCount = seasonCount;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setAdult(boolean adult) {
+        isAdult = adult;
+    }
+
+    public void setGenres(List<String> genres) {
+        this.genres = genres;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
+    public void setCharacters(List<Character> characters) {
+        this.characters = characters;
+    }
+
+    public void setSourceMaterial(Source sourceMaterial) {
+        this.sourceMaterial = sourceMaterial;
+    }
+
+    public void setCountryOfOrigin(CountryCode countryOfOrigin) {
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
+    public void setStaffList(List<Staff> staffList) {
+        this.staffList = staffList;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setRelatedManhwa(List<Manhwa> relatedManhwa) {
+        this.relatedManhwa = relatedManhwa;
     }
 }
