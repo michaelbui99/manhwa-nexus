@@ -29,6 +29,10 @@ The server jar will be located in the <PROJECT_ROOT>/build/distributions folder
 
 ```console
 $ java --add-opens java.base/java.time=ALL-UNNAMED -jar ./build/distributions/manhwa-nexus-server-<VERSION>-SNAPSHOT.jar
+
+or 
+
+$ bash ./build/distributions/run.sh
 ```
 
 ## Analysis
