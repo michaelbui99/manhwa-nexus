@@ -69,4 +69,25 @@ public class SqlTagRepository  extends BaseSqlRepository implements TagRepositor
 
         return tags;
     }
+
+    @Override
+    public List<String> getByManhwa(int manhwaId) {
+        List<String> tags = new ArrayList<>();
+
+        perform((connection) -> {
+            try {
+                PreparedStatement stm = connection.prepareStatement("SELECT tag from tag join manhwa_tag mt on tag.id = mt.tag_id WHERE manhwa_id = ?");
+                stm.setInt(1, manhwaId);
+                ResultSet result = stm.executeQuery();
+
+                while (result.next()) {
+                    tags.add(result.getString("tag"));
+                }
+            } catch (SQLException e) {
+                throw new InfrastructureException(e.getMessage());
+            }
+        });
+
+        return tags;
+    }
 }

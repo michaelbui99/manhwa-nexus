@@ -70,4 +70,25 @@ public class SqlGenreRepository extends BaseSqlRepository implements GenreReposi
 
         return genres;
     }
+
+    @Override
+    public List<String> getByManhwa(int manhwaId) {
+        List<String> genres = new ArrayList<>();
+
+        perform((connection) -> {
+            try {
+                PreparedStatement stm = connection.prepareStatement("SELECT genre.genre from genre join manhwa_genre mg on genre.id = mg.genre_id WHERE manhwa_id = ?");
+                stm.setInt(1, manhwaId);
+                ResultSet result = stm.executeQuery();
+
+                while (result.next()) {
+                    genres.add(result.getString("genre"));
+                }
+            } catch (SQLException e) {
+                throw new InfrastructureException(e.getMessage());
+            }
+        });
+
+        return genres;
+    }
 }

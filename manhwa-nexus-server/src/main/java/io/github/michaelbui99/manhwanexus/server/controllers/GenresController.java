@@ -1,6 +1,7 @@
 package io.github.michaelbui99.manhwanexus.server.controllers;
 
 import io.github.michaelbui99.manhwanexus.core.interfaces.repository.GenreRepository;
+import io.github.michaelbui99.manhwanexus.core.interfaces.service.GenreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,20 +14,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("genres")
-public class GenreController {
-    private final Logger logger = LoggerFactory.getLogger(GenreController.class);
-    private final GenreRepository genreRepository;
+public class GenresController {
+    private final Logger logger = LoggerFactory.getLogger(GenresController.class);
+    private final GenreService genreService;
 
     @Autowired
-    public GenreController(GenreRepository genreRepository) {
-        this.genreRepository = genreRepository;
+    public GenresController(GenreService genreService) {
+        this.genreService= genreService;
     }
 
     @GetMapping
     public ResponseEntity<List<String>> getAll() {
         try {
             logger.info("Retrieved GET request for /genres");
-            return ResponseEntity.ok(genreRepository.getAll());
+            return ResponseEntity.ok(genreService.getAll());
         } catch (Exception e) {
             logger.error(String.format("failed to retrieve all genres: %s", e.getMessage()));
             e.printStackTrace();

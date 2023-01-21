@@ -5,5 +5,6 @@ public enum CountryCode {
     KR,
     JP,
     GB,
-    US
+    US,
+    UNKNOWN
 }

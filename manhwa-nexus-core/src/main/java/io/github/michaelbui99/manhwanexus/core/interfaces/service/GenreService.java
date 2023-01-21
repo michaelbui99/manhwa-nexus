@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface GenreService {
     List<String> getAll();
-
+    List<String> getByManhwa(int manhwaId);
     String create(String genre);
     Optional<String> createIfNotExists(String genre);
 

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+//TODO: Add cache
 public class TagServiceImpl implements TagService {
     private final TagRepository tagRepository;
 
@@ -18,6 +19,11 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<String> getAll() {
         return tagRepository.getAll();
+    }
+
+    @Override
+    public List<String> getByManhwa(int manhwaId) {
+        return tagRepository.getByManhwa(manhwaId);
     }
 
     @Override

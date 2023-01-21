@@ -13,7 +13,27 @@ public class BaseSqlRepository {
 
     public void perform(Consumer<Connection> perform) {
         connectionProvider.connect();
+        if (!connectionProvider.isConnected()) {
+            retryConnection(3);
+        }
         perform.accept(connectionProvider.getConnection());
-        connectionProvider.disconnect();
+//        connectionProvider.disconnect();
+    }
+
+    private void retryConnection(int retryCount) {
+        int count = 0;
+        while (count < retryCount) {
+            connectionProvider.connect();
+            if (connectionProvider.isConnected()) {
+                return;
+            }
+
+            try {
+                count++;
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

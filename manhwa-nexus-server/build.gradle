@@ -18,12 +18,14 @@ ext {
 }
 
 dependencies {
+    // Spring
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.10.1'
 
     // Submodules
     implementation project(path: ':manhwa-nexus-core')

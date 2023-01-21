@@ -43,7 +43,27 @@ public class ManhwaServiceImpl implements ManhwaService {
 
     @Override
     public List<Manhwa> getAll() {
-        return manhwaRepository.getAll();
+        List<Manhwa> allManhwas = manhwaRepository.getAll();
+
+        // NOTE: (mibui 2023-01-21) This is inefficient since we are making multiple DB calls for each manhwa,
+        //                          which will become expensive at scale. Ideally we just fetch them all the information
+        //                          needed in a single query in the SqlManhwaRepository or cache some information,
+        //                          such as genres and tags for each manhwa since they are mostly static
+        allManhwas.forEach(manhwa -> {
+            List<String> tags = tagService.getByManhwa(manhwa.getId());
+            List<String> genres = genreService.getByManhwa(manhwa.getId());
+
+            if (tags.size() > 0) {
+                manhwa.setTags(tags);
+            }
+
+            if (genres.size() > 0) {
+                manhwa.setGenres(genres);
+            }
+        });
+
+
+        return allManhwas;
     }
 
     @Override

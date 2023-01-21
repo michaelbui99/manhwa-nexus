@@ -5,6 +5,7 @@ import java.util.Optional;
 
 public interface TagService {
     List<String> getAll();
+    List<String> getByManhwa(int manhwaId);
 
     String create(String tag);
     Optional<String> createIfNotExists(String tag);

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+//TODO: Add cache
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository genreRepository;
 
@@ -18,6 +19,11 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public List<String> getAll() {
         return genreRepository.getAll();
+    }
+
+    @Override
+    public List<String> getByManhwa(int manhwaId) {
+        return genreRepository.getByManhwa(manhwaId);
     }
 
     @Override
