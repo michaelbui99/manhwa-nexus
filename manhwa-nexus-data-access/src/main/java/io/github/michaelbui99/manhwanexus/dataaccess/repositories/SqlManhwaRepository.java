@@ -5,7 +5,7 @@ import io.github.michaelbui99.manhwanexus.core.models.Manhwa;
 
 import java.util.List;
 
-public class SqlManhwaRepository implements ManhwaRepository {
+public class SqlManhwaRepository extends BaseSqlRepository implements ManhwaRepository {
 
     @Override
     public Manhwa create(Manhwa entity) {
@@ -14,6 +14,7 @@ public class SqlManhwaRepository implements ManhwaRepository {
 
     @Override
     public Manhwa getById(int id) {
+
         return null;
     }
 

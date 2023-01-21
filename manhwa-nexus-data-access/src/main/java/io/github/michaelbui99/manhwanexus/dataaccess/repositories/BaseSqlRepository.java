@@ -2,15 +2,18 @@ package io.github.michaelbui99.manhwanexus.dataaccess.repositories;
 
 import io.github.michaelbui99.manhwanexus.dataaccess.ConnectionProvider;
 
+import java.sql.Connection;
+import java.util.function.Consumer;
+
 public class BaseSqlRepository {
     private ConnectionProvider connectionProvider = ConnectionProvider.getInstance();
 
     public BaseSqlRepository() {
     }
 
-    public void perform(PerformSql func) {
+    public void perform(Consumer<Connection> perform) {
         connectionProvider.connect();
-        func.execute(connectionProvider.getConnection());
+        perform.accept(connectionProvider.getConnection());
         connectionProvider.disconnect();
     }
 }
