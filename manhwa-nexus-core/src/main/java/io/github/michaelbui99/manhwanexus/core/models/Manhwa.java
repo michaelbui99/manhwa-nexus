@@ -10,7 +10,6 @@ public class Manhwa {
      * Internal id
      */
     private int id;
-
     /**
      * Title of the Manhwa, e.g. Solo Leveling
      */
@@ -77,14 +76,6 @@ public class Manhwa {
     private Source sourceMaterial;
 
     /**
-     * Manhwa-specific attributes.
-     * Key = Attribute name
-     * Value = Content
-     * e.g. "Weapon(s)" : "BF Sword"
-     */
-    private Map<String, String> manhwaSpecificAttributes;
-
-    /**
      * Country code for where the Manhwa was created, e.g. KR
      */
     private CountryCode countryOfOrigin;
@@ -112,12 +103,11 @@ public class Manhwa {
     public Manhwa() {
     }
 
-    // TODO: Replace with builder
-    public Manhwa(int id, String title, Map<TitleLanguage, String> alternateTitles, String synopsis, int chapterCount
+    private Manhwa(int id, String title, Map<TitleLanguage, String> alternateTitles, String synopsis, int chapterCount
             , int volumeCount, int seasonCount, LocalDate startDate, LocalDate endDate, boolean isAdult,
-                  List<String> genres, List<String> tags, List<Character> characters, Source sourceMaterial,
-                  Map<String, String> manhwaSpecificAttributes, CountryCode countryOfOrigin, List<Staff> staffList,
-                  Studio studio, Publisher publisher, List<Manhwa> relatedManhwa) {
+                   List<String> genres, List<String> tags, List<Character> characters, Source sourceMaterial,
+                   CountryCode countryOfOrigin, List<Staff> staffList,
+                   Studio studio, Publisher publisher, List<Manhwa> relatedManhwa) {
         this.id = id;
         this.title = title;
         this.alternateTitles = alternateTitles;
@@ -132,12 +122,37 @@ public class Manhwa {
         this.tags = tags;
         this.characters = characters;
         this.sourceMaterial = sourceMaterial;
-        this.manhwaSpecificAttributes = manhwaSpecificAttributes;
         this.countryOfOrigin = countryOfOrigin;
         this.staffList = staffList;
         this.studio = studio;
         this.publisher = publisher;
         this.relatedManhwa = relatedManhwa;
+    }
+
+    public Manhwa(ManhwaBuilder builder) {
+        this.id = builder.getId();
+        this.title = builder.getTitle();
+        this.alternateTitles = builder.getAlternateTitles();
+        this.synopsis = builder.getSynopsis();
+        this.chapterCount = builder.getChapterCount();
+        this.volumeCount = builder.getVolumeCount();
+        this.seasonCount = builder.getSeasonCount();
+        this.startDate = builder.getStartDate();
+        this.endDate = builder.getEndDate();
+        this.isAdult = builder.isAdult();
+        this.genres = builder.getGenres();
+        this.tags = builder.getTags();
+        this.characters = builder.getCharacters();
+        this.sourceMaterial = builder.getSourceMaterial();
+        this.countryOfOrigin = builder.getCountryOfOrigin();
+        this.staffList = builder.getStaffList();
+        this.studio = builder.getStudio();
+        this.publisher = builder.getPublisher();
+        this.relatedManhwa = builder.getRelatedManhwa();
+    }
+
+    public static ManhwaBuilder create(int id, String title, List<String> genres, Source sourceMaterial, CountryCode countryOfOrigin) {
+        return new ManhwaBuilder(id, title, genres, sourceMaterial, countryOfOrigin);
     }
 
     public int getSeasonYear() {
@@ -202,10 +217,6 @@ public class Manhwa {
 
     public Source getSourceMaterial() {
         return sourceMaterial;
-    }
-
-    public Map<String, String> getManhwaSpecificAttributes() {
-        return manhwaSpecificAttributes;
     }
 
     public CountryCode getCountryOfOrigin() {
@@ -290,10 +301,6 @@ public class Manhwa {
 
     public void setSourceMaterial(Source sourceMaterial) {
         this.sourceMaterial = sourceMaterial;
-    }
-
-    public void setManhwaSpecificAttributes(Map<String, String> manhwaSpecificAttributes) {
-        this.manhwaSpecificAttributes = manhwaSpecificAttributes;
     }
 
     public void setCountryOfOrigin(CountryCode countryOfOrigin) {

@@ -1,5 +1,6 @@
 package io.github.michaelbui99.manhwanexus.dataaccess.repositories;
 
+import io.github.michaelbui99.manhwanexus.core.exceptions.InfrastructureException;
 import io.github.michaelbui99.manhwanexus.core.interfaces.service.StudioService;
 import io.github.michaelbui99.manhwanexus.core.models.Manhwa;
 import io.github.michaelbui99.manhwanexus.core.models.Studio;
@@ -24,7 +25,7 @@ public class SqlStudioRepository extends BaseSqlRepository implements StudioServ
                     try {
                         stm.setString(2, website);
                     } catch (SQLException e) {
-                        throw new RuntimeException(e);
+                        throw new InfrastructureException(e.getMessage());
                     }
                 });
 
@@ -34,7 +35,7 @@ public class SqlStudioRepository extends BaseSqlRepository implements StudioServ
 
                 createdStudio.set(new Studio(id, studio.getName(), new ArrayList<>(), studio.getOfficialWebsiteURL().orElse(null)));
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 
@@ -55,7 +56,7 @@ public class SqlStudioRepository extends BaseSqlRepository implements StudioServ
                 }
 
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 
@@ -72,7 +73,7 @@ public class SqlStudioRepository extends BaseSqlRepository implements StudioServ
                 ResultSet results = stm.executeQuery();
                 result.set(results.next());
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 
@@ -89,7 +90,7 @@ public class SqlStudioRepository extends BaseSqlRepository implements StudioServ
                 ResultSet results = stm.executeQuery();
                 result.set(results.next());
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 

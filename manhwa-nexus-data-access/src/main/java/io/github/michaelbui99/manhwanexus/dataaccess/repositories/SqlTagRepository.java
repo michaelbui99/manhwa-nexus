@@ -1,5 +1,6 @@
 package io.github.michaelbui99.manhwanexus.dataaccess.repositories;
 
+import io.github.michaelbui99.manhwanexus.core.exceptions.InfrastructureException;
 import io.github.michaelbui99.manhwanexus.core.interfaces.repository.TagRepository;
 
 import java.sql.PreparedStatement;
@@ -17,7 +18,7 @@ public class SqlTagRepository  extends BaseSqlRepository implements TagRepositor
 
         perform(connection -> {
             try {
-                PreparedStatement stm = connection.prepareStatement("INSERT INTO tag(tag) VALUES ?", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement stm = connection.prepareStatement("INSERT INTO tag(tag) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
                 stm.setString(1, entity);
                 ResultSet generatedKeys = stm.getGeneratedKeys();
 
@@ -27,7 +28,7 @@ public class SqlTagRepository  extends BaseSqlRepository implements TagRepositor
                 }
 
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 
@@ -62,7 +63,7 @@ public class SqlTagRepository  extends BaseSqlRepository implements TagRepositor
                     tags.add(result.getString("tag"));
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 

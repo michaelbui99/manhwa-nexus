@@ -1,5 +1,6 @@
 package io.github.michaelbui99.manhwanexus.dataaccess.repositories;
 
+import io.github.michaelbui99.manhwanexus.core.exceptions.InfrastructureException;
 import io.github.michaelbui99.manhwanexus.core.interfaces.repository.GenreRepository;
 
 import java.sql.PreparedStatement;
@@ -18,7 +19,7 @@ public class SqlGenreRepository extends BaseSqlRepository implements GenreReposi
 
         perform(connection -> {
             try {
-                PreparedStatement stm = connection.prepareStatement("INSERT INTO genre(genre) VALUES ?", Statement.RETURN_GENERATED_KEYS);
+                PreparedStatement stm = connection.prepareStatement("INSERT INTO genre(genre) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
                 stm.setString(1, entity);
                 ResultSet generatedKeys = stm.getGeneratedKeys();
 
@@ -28,7 +29,7 @@ public class SqlGenreRepository extends BaseSqlRepository implements GenreReposi
                 }
 
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 
@@ -63,7 +64,7 @@ public class SqlGenreRepository extends BaseSqlRepository implements GenreReposi
                     genres.add(result.getString("genre"));
                 }
             } catch (SQLException e) {
-                throw new RuntimeException(e);
+                throw new InfrastructureException(e.getMessage());
             }
         });
 

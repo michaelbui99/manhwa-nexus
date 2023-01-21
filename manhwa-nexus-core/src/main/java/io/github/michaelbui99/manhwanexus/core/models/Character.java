@@ -1,6 +1,7 @@
 package io.github.michaelbui99.manhwanexus.core.models;
 
 import java.util.List;
+import java.util.Map;
 
 public class Character {
     private int id;
@@ -14,8 +15,16 @@ public class Character {
     private CharacterStatus status;
     private String description;
 
+    /**
+     * Manhwa-specific attributes.
+     * Key = Attribute name
+     * Value = Content
+     * e.g. "Weapon(s)" : "BF Sword"
+     */
+    private Map<String, String> manhwaSpecificAttributes;
+
     public Character(int id, String name, int age, List<String> titles, String race, List<Character> relatives,
-                     String occupation, CharacterStatus status, String description) {
+                     String occupation, CharacterStatus status, String description, Map<String, String> manhwaSpecificAttributes) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -25,6 +34,7 @@ public class Character {
         this.occupation = occupation;
         this.status = status;
         this.description = description;
+        this.manhwaSpecificAttributes = manhwaSpecificAttributes;
     }
 
     public int getId() {
