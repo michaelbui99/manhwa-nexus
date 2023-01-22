@@ -1,0 +1,8 @@
+<div class="grid grid-flow-col auto-cols-max gap-10">
+    <ng-container
+        class="flex"
+        *ngFor="let manhwa of manhwas"
+    >
+        <app-manhwa-card [manhwa]="manhwa"></app-manhwa-card>
+    </ng-container>
+</div>

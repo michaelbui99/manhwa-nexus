@@ -3,6 +3,7 @@
         <div class="filter-select">
             <p>Genre</p>
             <ng-select
+                (change)="filterManhwas()"
                 [(ngModel)]="selectedGenre"
                 placeholder="Any"
             >
@@ -13,5 +14,12 @@
                 >
             </ng-select>
         </div>
+    </div>
+
+    <div class="pt-6">
+        <app-manhwa-grid
+            [manhwas]="manhwasToShow"
+            [columns]="5"
+        ></app-manhwa-grid>
     </div>
 </div>

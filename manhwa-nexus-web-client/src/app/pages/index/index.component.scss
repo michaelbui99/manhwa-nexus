@@ -1,54 +1,54 @@
-@import "../../styles/common";
-@import "../../styles/mixins";
+@import '../../styles/common';
+@import '../../styles/mixins';
 
 :host {
-  .page-container {
-    @include page-base;
-    display: flex;
-    flex-direction: row;
-
-    .hero {
-      max-width: 50vw;
-      margin-top: 3rem;
-
-      .heading {
-        h2 {
-          font-size: 26px;
-          font-weight: 500;
-        }
-      }
-
-      .sub-heading {
-        margin-bottom: 1rem;
-
-        h3 {
-          font-weight: 500;
-          margin-bottom: 0;
-        }
-
-        p {
-          margin-top: 0;
-        }
-      }
-
-      .cta {
+    .page-container {
+        @include page-base;
         display: flex;
         flex-direction: row;
-        column-gap: 1rem;
-        margin-top: 2rem;
 
-        button {
-          @include button-base;
+        .hero {
+            max-width: 50vw;
+            margin-top: 3rem;
+
+            .heading {
+                h2 {
+                    font-size: 26px;
+                    font-weight: 500;
+                }
+            }
+
+            .sub-heading {
+                margin-bottom: 1rem;
+
+                h3 {
+                    font-weight: 500;
+                    margin-bottom: 0;
+                }
+
+                p {
+                    margin-top: 0;
+                }
+            }
+
+            .cta {
+                display: flex;
+                flex-direction: row;
+                column-gap: 1rem;
+                margin-top: 2rem;
+
+                button {
+                    @include button-base;
+                }
+            }
         }
-      }
-    }
 
-    .splash-image{
-      img{
-        position: absolute;
-        right:0;
-        margin-right: 5vw;
-      }
+        .splash-image {
+            img {
+                position: absolute;
+                right: 0;
+                margin-right: 5vw;
+            }
+        }
     }
-  }
 }

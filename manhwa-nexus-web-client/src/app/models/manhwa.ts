@@ -1,3 +1,5 @@
+import { SimpleDate } from './simple-date';
+
 export interface Manhwa {
     id: number;
     title: string;
@@ -6,8 +8,8 @@ export interface Manhwa {
     chapterCount: number;
     volumeCount: number;
     seasonCount: number;
-    startDate?: Date;
-    endDate?: Date;
+    startDate?: SimpleDate;
+    endDate?: SimpleDate;
     isAdult: boolean;
     genres: string[];
     tags?: string[];
@@ -18,4 +20,6 @@ export interface Manhwa {
     sourceMaterial: string;
     countryOfOrigin: string;
     relatedManhwa: object[];
+    coverUrl: string;
+    status: string;
 }

@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ManhwaCardComponent } from './components/manhwa-card/manhwa-card.component';
+import { ManhwaGridComponent } from './components/manhwa-grid/manhwa-grid.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { ManhwaCardComponent } from './components/manhwa-card/manhwa-card.compon
         BrowseComponent,
         NewsComponent,
         ManhwaCardComponent,
+        ManhwaGridComponent,
     ],
     imports: [
         BrowserModule,
