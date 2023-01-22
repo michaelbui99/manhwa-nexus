@@ -111,12 +111,23 @@ public class ManhwaBuilder {
      */
     private List<Manhwa> relatedManhwa = new ArrayList<>();
 
-    public ManhwaBuilder(int id, String title, List<String> genres, Source sourceMaterial, CountryCode countryOfOrigin) {
+    /**
+     * Cover image url
+     */
+    private String coverUrl;
+
+    /**
+     * Status of the Manhwa
+     */
+    private Status status;
+
+    public ManhwaBuilder(int id, String title, List<String> genres, Source sourceMaterial, CountryCode countryOfOrigin, Status status) {
         this.id = id;
         this.title = title;
         this.genres = genres;
         this.sourceMaterial = sourceMaterial;
         this.countryOfOrigin = countryOfOrigin;
+        this.status = status;
     }
 
     public Manhwa build() {
@@ -196,6 +207,15 @@ public class ManhwaBuilder {
         return this;
     }
 
+    public ManhwaBuilder coverUlr(String coverUrl){
+        this.coverUrl = coverUrl;
+        return this;
+    }
+
+    public ManhwaBuilder status(Status status){
+        this.status = status;
+        return this;
+    }
 
     public int getId() {
         return id;
@@ -275,5 +295,13 @@ public class ManhwaBuilder {
 
     public List<Manhwa> getRelatedManhwa() {
         return relatedManhwa;
+    }
+
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }

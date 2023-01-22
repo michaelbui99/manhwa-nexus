@@ -37,6 +37,7 @@ export class ConfigService {
 
         this._config = config;
         this._configLoaded = true;
+        console.info('loaded configurations: ', this._config);
     }
 
     async getConfig(): Promise<ClientConfig> {

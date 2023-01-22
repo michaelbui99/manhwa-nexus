@@ -100,6 +100,16 @@ public class Manhwa {
      */
     private List<Manhwa> relatedManhwa;
 
+    /**
+     * Cover image url
+     */
+    private String coverUrl;
+
+    /**
+     * Status of the Manhwa
+     */
+    private Status status;
+
     public Manhwa() {
     }
 
@@ -107,7 +117,7 @@ public class Manhwa {
             , int volumeCount, int seasonCount, LocalDate startDate, LocalDate endDate, boolean isAdult,
                    List<String> genres, List<String> tags, List<Character> characters, Source sourceMaterial,
                    CountryCode countryOfOrigin, List<Staff> staffList,
-                   Studio studio, Publisher publisher, List<Manhwa> relatedManhwa) {
+                   Studio studio, Publisher publisher, List<Manhwa> relatedManhwa, String coverUrl, Status status) {
         this.id = id;
         this.title = title;
         this.alternateTitles = alternateTitles;
@@ -127,6 +137,8 @@ public class Manhwa {
         this.studio = studio;
         this.publisher = publisher;
         this.relatedManhwa = relatedManhwa;
+        this.coverUrl = coverUrl;
+        this.status = status;
     }
 
     public Manhwa(ManhwaBuilder builder) {
@@ -149,10 +161,12 @@ public class Manhwa {
         this.studio = builder.getStudio();
         this.publisher = builder.getPublisher();
         this.relatedManhwa = builder.getRelatedManhwa();
+        this.coverUrl = builder.getCoverUrl();
+        this.status = builder.getStatus();
     }
 
-    public static ManhwaBuilder create(int id, String title, List<String> genres, Source sourceMaterial, CountryCode countryOfOrigin) {
-        return new ManhwaBuilder(id, title, genres, sourceMaterial, countryOfOrigin);
+    public static ManhwaBuilder create(int id, String title, List<String> genres, Source sourceMaterial, CountryCode countryOfOrigin, Status status) {
+        return new ManhwaBuilder(id, title, genres, sourceMaterial, countryOfOrigin, status);
     }
 
     public int getSeasonYear() {
@@ -321,5 +335,16 @@ public class Manhwa {
 
     public void setRelatedManhwa(List<Manhwa> relatedManhwa) {
         this.relatedManhwa = relatedManhwa;
+    }
+
+    public Optional<String> getCoverUrl() {
+        if (coverUrl == null) {
+            return Optional.empty();
+        }
+        return Optional.of(coverUrl);
+    }
+
+    public Status getStatus() {
+        return status;
     }
 }

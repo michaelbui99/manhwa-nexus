@@ -1,30 +1,23 @@
 package io.github.michaelbui99.manhwanexus.server;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import io.github.michaelbui99.manhwanexus.core.interfaces.repository.GenreRepository;
-import io.github.michaelbui99.manhwanexus.core.interfaces.repository.ManhwaRepository;
-import io.github.michaelbui99.manhwanexus.core.interfaces.repository.TagRepository;
-import io.github.michaelbui99.manhwanexus.core.interfaces.service.CharacterService;
-import io.github.michaelbui99.manhwanexus.core.interfaces.service.GenreService;
-import io.github.michaelbui99.manhwanexus.core.interfaces.service.ManhwaService;
-import io.github.michaelbui99.manhwanexus.core.interfaces.service.TagService;
-import io.github.michaelbui99.manhwanexus.core.services.GenreServiceImpl;
-import io.github.michaelbui99.manhwanexus.core.services.ManhwaServiceImpl;
-import io.github.michaelbui99.manhwanexus.core.services.TagServiceImpl;
-import io.github.michaelbui99.manhwanexus.dataaccess.repositories.SqlGenreRepository;
-import io.github.michaelbui99.manhwanexus.dataaccess.repositories.SqlManhwaRepository;
-import io.github.michaelbui99.manhwanexus.dataaccess.repositories.SqlTagRepository;
-import io.github.michaelbui99.manhwanexus.server.typeadapters.LocalDateTypeAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ManhwaNexusServerApplication {
+    private final static Logger logger = LoggerFactory.getLogger(ManhwaNexusServerApplication.class);
+
     public static void main(String[] args) {
+        logger.info("""
+                  __  __             _                    _   _                       ____                          \s
+                 |  \\/  | __ _ _ __ | |____      ____ _  | \\ | | _____  ___   _ ___  / ___|  ___ _ ____   _____ _ __\s
+                 | |\\/| |/ _` | '_ \\| '_ \\ \\ /\\ / / _` | |  \\| |/ _ \\ \\/ / | | / __| \\___ \\ / _ \\ '__\\ \\ / / _ \\ '__|
+                 | |  | | (_| | | | | | | \\ V  V / (_| | | |\\  |  __/>  <| |_| \\__ \\  ___) |  __/ |   \\ V /  __/ |  \s
+                 |_|  |_|\\__,_|_| |_|_| |_|\\_/\\_/ \\__,_| |_| \\_|\\___/_/\\_\\\\__,_|___/ |____/ \\___|_|    \\_/ \\___|_|  \s
+                                                                                                                    \s
+                """);
         SpringApplication.run(ManhwaNexusServerApplication.class, args);
     }
 
