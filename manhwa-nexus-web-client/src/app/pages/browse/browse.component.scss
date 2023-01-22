@@ -1,0 +1,14 @@
+@import '../../styles/common';
+@import '../../styles/mixins';
+
+:host {
+    .page-container {
+        @include page-base;
+
+        .filters {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}

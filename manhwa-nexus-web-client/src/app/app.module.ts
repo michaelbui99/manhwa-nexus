@@ -11,6 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { NavLinkComponent } from './components/nav-link/nav-link.component';
 import { BrowseComponent } from './pages/browse/browse.component';
 import { NewsComponent } from './pages/news/news.component';
+import { FormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
     declarations: [
@@ -27,6 +29,8 @@ import { NewsComponent } from './pages/news/news.component';
         BrowserAnimationsModule,
         MatButtonModule,
         HttpClientModule,
+        FormsModule,
+        NgSelectModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

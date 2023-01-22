@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ManhwaService } from 'src/app/services/http/manhwa-service.service';
+import { Manhwa } from 'src/app/models/manhwa';
+import { ManhwaService } from 'src/app/services/http/manhwa.service';
 
 @Component({
     selector: 'app-browse',
@@ -7,10 +8,13 @@ import { ManhwaService } from 'src/app/services/http/manhwa-service.service';
     styleUrls: ['./browse.component.scss'],
 })
 export class BrowseComponent implements OnInit {
+    manhwas: Manhwa[] = [];
+    genres: string[] = [];
+
     constructor(private _manhwaService: ManhwaService) {}
 
     async ngOnInit(): Promise<void> {
-        const manhwas = await this._manhwaService.getManhwas();
-        console.log(manhwas);
+        this.manhwas = await this._manhwaService.getManhwas();
+        this.genres = await this._manhwaService.getGenres();
     }
 }
