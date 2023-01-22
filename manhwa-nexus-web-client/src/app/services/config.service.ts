@@ -51,4 +51,8 @@ export class ConfigService {
 
         return this._config;
     }
+
+    get configLoaded() {
+        return this._configLoaded;
+    }
 }

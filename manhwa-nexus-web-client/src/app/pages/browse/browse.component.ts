@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Manhwa } from 'src/app/models/manhwa';
 import { ManhwaService } from 'src/app/services/http/manhwa.service';
 
@@ -10,11 +11,19 @@ import { ManhwaService } from 'src/app/services/http/manhwa.service';
 export class BrowseComponent implements OnInit {
     manhwas: Manhwa[] = [];
     genres: string[] = [];
+    selectedGenre: string;
 
-    constructor(private _manhwaService: ManhwaService) {}
+    constructor(private _manhwaService: ManhwaService, private _snackBar: MatSnackBar) {}
 
     async ngOnInit(): Promise<void> {
-        this.manhwas = await this._manhwaService.getManhwas();
-        this.genres = await this._manhwaService.getGenres();
+        try {
+            this.manhwas = await this._manhwaService.getManhwas();
+            this.genres = await this._manhwaService.getGenres();
+        } catch (err) {
+            console.error(err);
+            this._snackBar.open('Connection to server lost...', null, {
+                duration: 8000,
+            });
+        }
     }
 }

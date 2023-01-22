@@ -18,7 +18,6 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {}
 
     handleNavLinkClick(navLink: NavLink) {
-        navLink.selected = true;
         this.navLinks.forEach((navLink) => (navLink.selected = false));
         navLink.selected = true;
     }

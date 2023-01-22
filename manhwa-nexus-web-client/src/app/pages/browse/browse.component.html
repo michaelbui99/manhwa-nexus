@@ -1,3 +1,17 @@
 <div class="page-container">
-    <div class="filters"></div>
+    <div class="filters">
+        <div class="filter-select">
+            <p>Genre</p>
+            <ng-select
+                [(ngModel)]="selectedGenre"
+                placeholder="Any"
+            >
+                <ng-option
+                    *ngFor="let genre of genres"
+                    [value]="genre"
+                    >{{ genre }}</ng-option
+                >
+            </ng-select>
+        </div>
+    </div>
 </div>

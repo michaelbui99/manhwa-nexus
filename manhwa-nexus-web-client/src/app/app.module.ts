@@ -13,6 +13,8 @@ import { BrowseComponent } from './pages/browse/browse.component';
 import { NewsComponent } from './pages/news/news.component';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ManhwaCardComponent } from './components/manhwa-card/manhwa-card.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +24,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         NavLinkComponent,
         BrowseComponent,
         NewsComponent,
+        ManhwaCardComponent,
     ],
     imports: [
         BrowserModule,
@@ -31,6 +34,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         HttpClientModule,
         FormsModule,
         NgSelectModule,
+        MatSnackBarModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
