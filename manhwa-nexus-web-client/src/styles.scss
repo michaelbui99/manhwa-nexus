@@ -1,15 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-@import "app/styles/common";
-@import "app/styles/mixins";
+@import 'app/styles/common';
+@import 'app/styles/mixins';
+@import '~@ng-select/ng-select/themes/default.theme.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body {
-  height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color: $bgColor;
-  box-sizing: border-box;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: $bgColor;
+    box-sizing: border-box;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
 }

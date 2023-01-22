@@ -1,9 +1,9 @@
-@import "common";
+@import 'common';
 
 @mixin page-base {
-  padding: 0 $pagePadding;
+    padding: 0 $pagePadding;
 }
 
-@mixin button-base{
-  border-radius: 20px;
+@mixin button-base {
+    border-radius: 20px;
 }

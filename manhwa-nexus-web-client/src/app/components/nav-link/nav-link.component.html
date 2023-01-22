@@ -1,4 +1,8 @@
 <div class="nav-link-container">
-  <p [ngStyle]="{ 'font-weight': navLink.selected? '500': 'normal'}"
-     (click)="onClick()">{{navLink.displayText}}</p>
+    <p
+        [ngStyle]="{ 'font-weight': navLink.selected ? '500' : 'normal' }"
+        (click)="onClick()"
+    >
+        {{ navLink.displayText }}
+    </p>
 </div>

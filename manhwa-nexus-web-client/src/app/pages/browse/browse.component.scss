@@ -1,0 +1,27 @@
+@import '../../styles/common';
+@import '../../styles/mixins';
+
+:host {
+    .page-container {
+        @include page-base;
+        display: block;
+
+        .filters {
+            display: flex;
+            flex-direction: row;
+            column-gap: 2rem;
+
+            .filter-select {
+                display: block;
+
+                p {
+                    font-weight: 500;
+                }
+                ng-select {
+                    width: auto;
+                    min-width: 150px;
+                }
+            }
+        }
+    }
+}
