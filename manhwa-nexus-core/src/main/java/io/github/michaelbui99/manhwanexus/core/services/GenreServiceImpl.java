@@ -34,7 +34,6 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public Optional<String> createIfNotExists(String genre) {
         Map<String, Boolean> registeredGenres = MapUtil.fromList(getAll(), true);
-
         var resolvedGenre = genre;
         if (!registeredGenres.containsKey(genre)) {
             resolvedGenre = tryResolveGenre(genre);

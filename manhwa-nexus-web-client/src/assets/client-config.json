@@ -1,0 +1,6 @@
+{
+  "api": {
+    "server": "http://localhost:8080/api/v1/",
+    "gateway": "http://localhost:8700/"
+  }
+}
