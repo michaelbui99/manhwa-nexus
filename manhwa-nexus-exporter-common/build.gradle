@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group 'io.github.michaelbui99'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    // Submodules
+    implementation project(':manhwa-nexus-core')
+    implementation project(':manhwa-nexus-data-access')
+
+    //  YAML parsing
+    implementation 'org.yaml:snakeyaml:1.33'
+
+    // JSON parsing
+    implementation 'com.google.code.gson:gson:2.10.1'
+
+    // Web Server
+    implementation 'io.javalin:javalin:5.3.2'
+}
+
+test {
+    useJUnitPlatform()
+}
